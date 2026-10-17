@@ -1,3 +1,17 @@
+export const pendingKey = 'moment.oauth.pending';
+
+export function authConfigured(config, provider) {
+  const fb = config.firebase;
+  return Boolean(config.appId && config.redirectUri && config.providers[provider] &&
+    fb.apiKey && fb.authDomain && fb.projectId && fb.appId);
+}
+
+export function validPending(config, pending, state, now = Date.now()) {
+  return Boolean(pending && pending.state === state && pending.codeVerifier &&
+    Number.isFinite(pending.createdAt) && Math.abs(now - pending.createdAt) <= 10 * 60 * 1000 &&
+    authConfigured(config, pending.provider));
+}
+
 export function base64Url(bytes) {
   return btoa(String.fromCharCode(...bytes))
     .replace(/\+/g, '-')

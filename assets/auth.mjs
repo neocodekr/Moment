@@ -1,13 +1,12 @@
 import { authConfig } from './auth-config.mjs';
-import { authorizeUrl, exchangeCode, firebaseCustomToken, pkceChallenge, randomUrlSafe } from './auth-core.mjs';
+import { authConfigured, authorizeUrl, pendingKey, pkceChallenge, randomUrlSafe } from './auth-core.mjs';
+import { firebaseAuth } from './firebase-client.mjs';
 
-const pendingKey = 'moment.oauth.pending';
 const dialog = document.getElementById('loginDialog');
 const status = document.getElementById('loginStatus');
 const providers = document.querySelector('.loginProviders');
 const logoutButton = document.querySelector('[data-auth-logout]');
 const socialButtons = document.querySelectorAll('[data-login-provider]');
-let firebasePromise;
 let authStateListening = false;
 
 function message(ko, en) {
@@ -19,27 +18,6 @@ function showStatus(value) {
   status.textContent = value;
 }
 
-function configured(provider) {
-  const fb = authConfig.firebase;
-  return Boolean(authConfig.appId && authConfig.redirectUri && authConfig.providers[provider] &&
-    fb.apiKey && fb.authDomain && fb.projectId && fb.appId);
-}
-
-async function firebaseAuth() {
-  firebasePromise ??= Promise.all([
-    import('https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js'),
-    import('https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js'),
-  ]).then(([appSdk, authSdk]) => {
-    const app = appSdk.initializeApp(authConfig.firebase);
-    return { auth: authSdk.getAuth(app), signInWithCustomToken: authSdk.signInWithCustomToken,
-      signOut: authSdk.signOut, onAuthStateChanged: authSdk.onAuthStateChanged };
-  }).catch(error => {
-    firebasePromise = undefined;
-    throw error;
-  });
-  return firebasePromise;
-}
-
 function showSignedIn(signedIn) {
   providers.hidden = signedIn;
   logoutButton.hidden = !signedIn;
@@ -47,12 +25,12 @@ function showSignedIn(signedIn) {
 }
 
 async function startLogin(provider) {
-  if (!configured(provider)) {
+  if (!authConfigured(authConfig, provider)) {
     showStatus(message('로그인 설정을 확인하고 있습니다.', 'Sign-in setup is not complete.'));
     return;
   }
   const callback = new URL(authConfig.redirectUri);
-  if (callback.origin !== location.origin || callback.pathname !== location.pathname) {
+  if (callback.origin !== location.origin) {
     showStatus(message('로그인 콜백 주소가 현재 페이지와 다릅니다.', 'The sign-in callback URL does not match this page.'));
     return;
   }
@@ -61,45 +39,6 @@ async function startLogin(provider) {
   const challenge = await pkceChallenge(codeVerifier);
   sessionStorage.setItem(pendingKey, JSON.stringify({ state, codeVerifier, provider, createdAt: Date.now() }));
   location.assign(authorizeUrl(authConfig, authConfig.providers[provider], state, challenge));
-}
-
-async function completeLogin() {
-  const url = new URL(location.href);
-  const code = url.searchParams.get('code');
-  const state = url.searchParams.get('state');
-  const error = url.searchParams.get('error');
-  if (!code && !error) return;
-
-  url.searchParams.delete('code');
-  url.searchParams.delete('state');
-  url.searchParams.delete('error');
-  url.searchParams.delete('error_description');
-  history.replaceState(null, '', url);
-
-  const pendingText = sessionStorage.getItem(pendingKey);
-  sessionStorage.removeItem(pendingKey);
-  if (error || !code || !state || !pendingText) {
-    showStatus(message('로그인이 취소되었거나 만료되었습니다.', 'Sign-in was cancelled or expired.'));
-    return;
-  }
-  let pending;
-  try { pending = JSON.parse(pendingText); } catch { pending = null; }
-  if (!pending || pending.state !== state || Date.now() - pending.createdAt > 10 * 60 * 1000 ||
-      !configured(pending.provider)) {
-    showStatus(message('로그인 요청을 확인할 수 없습니다. 다시 시도해 주세요.', 'Could not verify sign-in. Please try again.'));
-    return;
-  }
-
-  showStatus(message('로그인을 완료하고 있습니다…', 'Completing sign-in…'));
-  try {
-    const accessToken = await exchangeCode(fetch, authConfig, code, pending.codeVerifier);
-    const customToken = await firebaseCustomToken(fetch, authConfig, accessToken);
-    const firebase = await firebaseAuth();
-    await firebase.signInWithCustomToken(firebase.auth, customToken);
-    showSignedIn(true);
-  } catch {
-    showStatus(message('로그인을 완료하지 못했습니다. 다시 시도해 주세요.', 'Could not complete sign-in. Please try again.'));
-  }
 }
 
 socialButtons.forEach(button => button.addEventListener('click', () => {
@@ -112,7 +51,7 @@ socialButtons.forEach(button => button.addEventListener('click', () => {
 }));
 
 document.querySelectorAll('[data-open-login]').forEach(button => button.addEventListener('click', async () => {
-  if (!configured('instagram') && !configured('tiktok')) return;
+  if (!authConfigured(authConfig, 'instagram') && !authConfigured(authConfig, 'tiktok')) return;
   try {
     const firebase = await firebaseAuth();
     if (!authStateListening) {
@@ -133,4 +72,7 @@ logoutButton.addEventListener('click', async () => {
   }
 });
 
-completeLogin();
+if (sessionStorage.getItem('moment.oauth.result') === 'success') {
+  sessionStorage.removeItem('moment.oauth.result');
+  showSignedIn(true);
+}

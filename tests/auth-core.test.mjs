@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
-import { authorizeUrl, exchangeCode, firebaseCustomToken, pkceChallenge } from '../assets/auth-core.mjs';
+import { authorizeUrl, exchangeCode, firebaseCustomToken, pkceChallenge, validPending } from '../assets/auth-core.mjs';
 
 const config = {
   baseUrl: 'https://neocode.shop',
@@ -53,4 +53,14 @@ test('AuthServer access token requests a Firebase custom token with an empty bod
 test('a custom token from another Firebase project is rejected', async () => {
   const fetchApi = async () => ({ ok: true, json: async () => ({ customToken: 'token', projectId: 'other' }) });
   await assert.rejects(firebaseCustomToken(fetchApi, config, 'auth-access'), /project mismatch/);
+});
+
+test('callback state must match and be less than ten minutes old', () => {
+  const readyConfig = { ...config, providers: { instagram: 'instagram' },
+    firebase: { apiKey: 'public-key', authDomain: 'example.firebaseapp.com',
+      projectId: 'moment-project', appId: 'web-app' } };
+  const pending = { state: 'expected', codeVerifier: 'verifier', provider: 'instagram', createdAt: 1000 };
+  assert.equal(validPending(readyConfig, pending, 'expected', 2000), true);
+  assert.equal(validPending(readyConfig, pending, 'other', 2000), false);
+  assert.equal(validPending(readyConfig, pending, 'expected', 601001), false);
 });
