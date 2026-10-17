@@ -75,15 +75,17 @@ async function startLogin(provider) {
 
 socialButtons.forEach(button => button.addEventListener('click', () => {
   const provider = button.dataset.loginProvider;
-  if (provider === 'instagram' || provider === 'tiktok') {
+  if (provider === 'instagram') {
     startLogin(provider).catch(() => showStatus(message('로그인을 시작하지 못했습니다.', 'Could not start sign-in.')));
+  } else if (provider === 'tiktok') {
+    showStatus(message('틱톡 로그인은 준비 중입니다.', 'TikTok sign-in is coming soon.'));
   } else {
     showStatus(message('구글 로그인은 준비 중입니다.', 'Google sign-in is coming soon.'));
   }
 }));
 
 document.querySelectorAll('[data-open-login]').forEach(button => button.addEventListener('click', async () => {
-  if (!authConfigured(authConfig, 'instagram') && !authConfigured(authConfig, 'tiktok')) return;
+  if (!authConfigured(authConfig, 'instagram')) return;
   try {
     const firebase = await watchAuthState();
     if (firebase.auth.currentUser) {
