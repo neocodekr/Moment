@@ -1,6 +1,6 @@
-import { authConfig } from './auth-config.mjs';
-import { exchangeCode, firebaseCustomToken, pendingKey, validPending } from './auth-core.mjs';
-import { firebaseAuth } from './firebase-client.mjs';
+import { authConfig } from './auth-config.js';
+import { exchangeCode, firebaseCustomToken, pendingKey, validPending } from './auth-core.js';
+import { firebaseAuth } from './firebase-client.js';
 
 const status = document.getElementById('callbackStatus');
 const english = localStorage.getItem('moment_lang') === 'en';

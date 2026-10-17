@@ -1,6 +1,6 @@
-import { authConfig } from './auth-config.mjs';
-import { authConfigured, authorizeUrl, pendingKey, pkceChallenge, randomUrlSafe } from './auth-core.mjs';
-import { firebaseAuth } from './firebase-client.mjs';
+import { authConfig } from './auth-config.js';
+import { authConfigured, authorizeUrl, pendingKey, pkceChallenge, randomUrlSafe } from './auth-core.js';
+import { firebaseAuth } from './firebase-client.js';
 
 const dialog = document.getElementById('loginDialog');
 const status = document.getElementById('loginStatus');

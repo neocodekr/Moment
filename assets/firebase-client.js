@@ -1,4 +1,4 @@
-import { authConfig } from './auth-config.mjs';
+import { authConfig } from './auth-config.js';
 
 let firebasePromise;
 
