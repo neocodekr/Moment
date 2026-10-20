@@ -1,0 +1,133 @@
+/* Visual language of the Moment preview: midnight canvas, quiet line art,
+   charcoal surfaces, and sparse autumn accents. */
+:root {
+  --bg:#08090c;
+  --paper:#202125;
+  --ink:#f5f4f2;
+  --muted:#a7a7ad;
+  --pink:#bd7880;
+  --deep:#a75a65;
+  --line:#38393e;
+  --soft:#27272c;
+  --shadow:0 24px 60px rgba(0,0,0,.28);
+}
+html {scroll-padding-top:85px}
+body {background:#08090c;color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;padding-top:78px}
+body:before {content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 4%,rgba(76,77,86,.13),transparent 46%),radial-gradient(ellipse at 80% 90%,rgba(70,37,37,.11),transparent 42%)}
+.brandWord b,.navLinks,.navcta,.langToggle button,.eyebrow,.hero h1,.btn,.badge,.sectionTitle .mini,.sectionTitle h2,.featureCard h3,.copyPanel .mini,.copyPanel h3,.bullet,.miniBox b,.ctaBox h2,.footerBrand b,.brandWord span,.hero p,.sectionTitle p,.featureCard p,.copyPanel p,.miniBox span,.ctaBox p,.footerBrand p {font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif!important}
+.wrap {width:min(1120px,calc(100% - 48px))}
+.nav {position:fixed;inset:0 0 auto;background:rgba(8,9,12,.85);border-bottom:1px solid #303136;backdrop-filter:blur(20px)}
+.navin {height:78px}
+.brand {color:#fff}
+.brand img,.footerBrand img {box-shadow:none;border:1px solid #404047;border-radius:13px}
+.brandWord b {font-size:24px;font-style:italic;letter-spacing:-.06em}
+.brandWord span,.footerBrand p {color:#96969d}
+.brandWord .accountId {color:#d5adb0}
+.navLinks {color:#c5c5c9;font-size:13px;letter-spacing:.02em}
+.navLinks a,.navcta,.themeFilter,.navThemeMobile,.btn,.storeBadgeIos,.floatingLoginButton,.loginProvider {transition:background .2s,border-color .2s,color .2s,transform .2s}
+.navLinks a:hover,.navLinks a:focus-visible {color:#fff}
+.navcta {background:#f1efed;color:#141416;border:1px solid #f1efed;box-shadow:none;padding:11px 19px}
+.navcta:hover {background:#d6d2d0}
+.langToggle {background:#1b1c20;border-color:#3b3c42;box-shadow:none}
+.langToggle button {color:#aaaab0}
+.langToggle button.active {background:#e7e5e3;color:#111216}
+.navThemeMobile {background:#202125;color:#eee;border-color:#48494e}
+main,footer {position:relative;z-index:1}
+.hero {padding:106px 0 110px;min-height:calc(100svh - 78px);display:flex;align-items:center;isolation:isolate}
+.hero:before,.hero:after {content:"";position:absolute;z-index:-1;pointer-events:none;opacity:.48}
+.hero:before {width:min(760px,88vw);aspect-ratio:1;left:50%;top:44%;transform:translate(-50%,-50%);border:1px solid #27282d;border-radius:50%;box-shadow:0 0 0 105px rgba(39,40,45,.12),0 0 0 210px rgba(39,40,45,.08)}
+.hero:after {width:min(500px,57vw);aspect-ratio:1;left:50%;top:44%;transform:translate(-50%,-50%) rotate(45deg);border:1px solid #34353a;border-radius:26px}
+.petals {display:none}
+.heroGrid {align-items:center;gap:76px}
+.heroCopy {margin-top:0}
+.eyebrow,.sectionTitle .mini {background:none;border:0;box-shadow:none;padding:0;color:#c88778;font-size:12px;letter-spacing:.15em;font-weight:750;text-transform:uppercase}
+.hero h1 {font-size:clamp(48px,5.7vw,82px);letter-spacing:-.065em;line-height:1.13;margin:20px 0 24px;font-weight:750}
+.hero p {color:#b5b5ba;font-size:18px;line-height:1.85}
+.heroStoreBadge {margin-top:28px}
+.storeBadgePlay img {height:64px}
+.badges {margin-top:26px;gap:8px}
+.badge {background:rgba(30,31,35,.82);border:1px solid #424348;color:#ceced2;font-weight:600;padding:8px 12px;font-size:12px}
+.posterCard {background:#1c1d21;border:1px solid #494a50;border-radius:30px;padding:12px;box-shadow:0 28px 80px rgba(0,0,0,.45)}
+.posterCard img {border-radius:20px}
+.section,.themeSection,.cta {padding:112px 0}
+.section.white,.themeSection {background:transparent;border-top:1px solid #27282d;border-bottom:0}
+.sectionTitle {margin-bottom:56px}
+.sectionTitle .mini {color:#c88778}
+.sectionTitle h2 {font-size:clamp(36px,4.4vw,58px);letter-spacing:-.065em;line-height:1.2;margin:14px 0 20px;font-weight:740}
+.sectionTitle p {color:#aaaab0;font-size:16px;line-height:1.85}
+.grid6 {gap:18px}
+.featureCard,.paper,.copyPanel,.miniBox,.featureShowcasePost,.themeCard,.ctaBox {background:#202125;border:1px solid #414247;box-shadow:none;border-radius:25px}
+.featureCard {padding:14px}
+.featureCard img {background:#151619;border-radius:17px}
+.featureCard h3 {font-size:21px;letter-spacing:-.035em;margin:20px 8px 9px;font-weight:700}
+.featureCard p {color:#a9a9af;margin:0 8px 8px;font-size:14px}
+.featureCard:hover,.themeCard:hover {border-color:#8e7171;transform:translateY(-3px)}
+.themeAnchor:target {box-shadow:0 0 0 2px #a8686c}
+.featureShowcasePost:before,.featureShowcasePost:after {display:none}
+.featureShowcasePost {background:#1d1e22;padding:18px}
+.showcaseBrand {color:#f0eeeb;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;font-style:italic;font-size:28px}
+.showcaseBrand span {color:#bc7880}
+.showcaseSub {color:#97979d}
+.showcaseShot {background:#131418;border:1px solid #3a3b41;box-shadow:none}
+.showcaseShot img {background:#131418}
+.copyPanel {background:#202125}
+.copyPanel .mini {color:#c88778}
+.copyPanel p,.miniBox span,.ctaBox p {color:#aaaab0}
+.bullet {color:#d8d8db}
+.dot,.miniBox .miniIcon {background:#3e3035;color:#e0a5ad}
+.miniBox {background:#25262b}
+.themeFilters {gap:10px;margin:0 0 30px}
+.themeFilter {background:#202125;color:#c8c8cc;border:1px solid #45464c;font-size:13px;font-weight:650}
+.themeFilter,.navThemeMobile,.floatingLoginButton,.loginDialog h2,.loginProvider,.loginMark {font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+.themeFilter:hover,.themeFilter[aria-pressed="true"] {background:#e9e6e4;border-color:#e9e6e4;color:#18191c}
+.themeCard {overflow:hidden}
+.themeCard a {background:#17181b}
+.themeCard img {background:#17181b}
+.themeCardInfo {border-top:1px solid #393a3f}
+.themeCard h3 {color:#f0f0f1;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+.themeCard p {color:#a4a4ab}
+.ctaBox {background:radial-gradient(circle at 10% 0%,rgba(154,83,65,.14),transparent 39%),#202125;text-align:center;padding:62px 38px;border-radius:30px}
+.ctaBox h2 {font-weight:750}
+.ctaBox .heroBtns,.ctaBox .storeBadges {justify-content:center}
+.btn.primary {background:#efedeb;color:#17181a;box-shadow:none;border-color:#efedeb}
+.btn.primary:hover {background:#d3d0ce}
+.btn.ghost {background:#27282d;border-color:#4a4b50;color:#eee}
+.storeBadgeIos {background:#151619;border-color:#4c4d53}
+.storeBadgeIos:hover {background:#303137}
+footer {background:#101114;border-top:1px solid #303136}
+.footerBrand b {color:#f0eeeb}
+.neo,.neo a {color:#929298}
+.floatingLoginButton {background:#eeeae7;color:#18191c;box-shadow:0 10px 35px rgba(0,0,0,.45);border:1px solid #fff;border-radius:18px}
+.floatingLoginButton:hover {box-shadow:0 15px 40px rgba(0,0,0,.55);background:#d6d2d0}
+.loginDialog {background:#202125;color:#f2f1ef;border-color:#515258;box-shadow:0 30px 90px rgba(0,0,0,.7)}
+.loginDialog::backdrop {background:rgba(0,0,0,.8)}
+.loginMark {background:#edebe9;color:#17181b}
+.loginProvider,.loginLogout {background:#2c2d32;color:#f1f1f2;border-color:#4e4f55}
+.loginProvider:hover {background:#393a40;border-color:#a77a7e}
+.loginProvider[data-login-provider="instagram"] img,.loginProvider[data-login-provider="tiktok"] img {filter:invert(1)}
+.loginProvider:disabled {background:#24252a;color:#aaaab0}
+.loginStatus {color:#dcb0b4!important}
+.ambientParticles {position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.ambientParticle {position:absolute;top:-5vh;left:var(--x);width:var(--size);height:var(--size);background:center/contain no-repeat;opacity:.68;animation:particle-fall var(--duration) linear var(--delay) infinite;will-change:transform}
+.ambientParticle.leaf {background-image:url("maple-leaf.svg")}
+.ambientParticle.heart {background-image:url("heart-particle.svg");opacity:.58}
+@keyframes particle-fall {from{transform:translate3d(0,-8vh,0) rotate(var(--turn))}to{transform:translate3d(var(--drift),112vh,0) rotate(calc(var(--turn) + 520deg))}}
+@media(max-width:980px) {.hero {min-height:0;padding:80px 0 94px}.heroGrid {gap:44px}.heroVisual {max-width:620px;margin:auto}.grid6 {grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px) {
+  .wrap {width:100%;padding-left:18px;padding-right:18px}
+  body {padding-top:68px}
+  .navin {height:68px}.brandWord b {font-size:22px}
+  .hero {padding:65px 0 76px}.hero:before {width:115vw}.hero:after {width:75vw}
+  .heroGrid {gap:36px}.hero h1 {font-size:clamp(42px,10vw,56px)}.hero p {font-size:16px}
+  .section,.themeSection,.cta {padding:74px 0}.sectionTitle {margin-bottom:36px}
+  .sectionTitle h2 {font-size:36px}.sectionTitle p {font-size:15px}
+  .grid6 {grid-template-columns:1fr}
+  .featureCard {max-width:500px;margin:0 auto}.featureCard img {max-height:460px}
+  .themeFilters {justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;padding:0 0 10px;scrollbar-width:thin}
+  .themeFilter {flex:none}
+  .ctaBox {padding:42px 24px;text-align:left}.ctaBox .heroBtns,.ctaBox .storeBadges {justify-content:flex-start}
+  .ctaBox h2 {font-size:35px}
+  .floatingLoginButton {left:18px;right:18px;width:calc(100% - 36px)}
+  .ambientParticle {opacity:.47}
+}
+@media(prefers-reduced-motion:reduce) {.ambientParticle {animation:none;top:var(--y);transform:rotate(var(--turn));will-change:auto}.featureCard:hover,.themeCard:hover {transform:none}}
