@@ -115,7 +115,10 @@ footer {background:#101114;border-top:1px solid #303136}
 .ambientParticle {position:absolute;top:-5vh;left:var(--x);width:var(--size);height:var(--size);background:center/contain no-repeat;opacity:.68;animation:particle-fall var(--duration) linear var(--delay) infinite;will-change:transform}
 .ambientParticle.leaf {background-image:url("maple-leaf.svg")}
 .ambientParticle.heart {background-image:url("heart-particle.svg");opacity:.58}
+.ambientParticle.snow {background-image:radial-gradient(circle,#fff 0 38%,rgba(218,236,249,.75) 55%,transparent 75%);opacity:.82;animation-name:snow-fall;filter:drop-shadow(0 0 3px rgba(240,248,255,.65))}
+.ambientParticle.snow.flake {background-image:url("snowflake.svg");opacity:.72;filter:none}
 @keyframes particle-fall {from{transform:translate3d(0,-8vh,0) rotate(var(--turn))}to{transform:translate3d(var(--drift),112vh,0) rotate(calc(var(--turn) + 520deg))}}
+@keyframes snow-fall {from{transform:translate3d(0,-8vh,0)}50%{transform:translate3d(var(--sway),50vh,0)}to{transform:translate3d(var(--drift),112vh,0)}}
 @media(max-width:980px) {.hero {min-height:0;padding:80px 0 94px}.heroGrid {grid-template-columns:1fr;gap:44px}.heroVisual {max-width:620px;margin:auto}.grid6 {grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px) {
   .wrap {width:100%;padding-left:18px;padding-right:18px}
@@ -133,6 +136,7 @@ footer {background:#101114;border-top:1px solid #303136}
   .ctaBox h2 {font-size:35px}
   .floatingLoginButton {left:18px;right:18px;width:calc(100% - 36px)}
   .ambientParticle {opacity:.47}
+  .ambientParticle.snow {opacity:.7}
 }
 @media(prefers-reduced-motion:reduce) {.ambientParticle {animation:none;top:var(--y);transform:rotate(var(--turn));will-change:auto}.reveal,.js-reveal .reveal {opacity:1;transform:none;transition:none;will-change:auto}.featureCard:hover,.themeCard:hover {transform:none}}
 /* Layered important typography overrides the site's older font declarations. */
