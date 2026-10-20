@@ -160,6 +160,7 @@ img,video,svg,canvas{max-width:100%;height:auto}
 }
 </style>
 <link rel="stylesheet" href="assets/preview-theme.css" />
+<script>if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js-reveal');</script>
 </head>
 <body>
 <div class="ambientParticles" aria-hidden="true"></div>
@@ -374,8 +375,6 @@ function applyLang(lang) {
 function setLang(lang) { applyLang(lang); }
 const savedLang = localStorage.getItem('moment_lang') || 'ko';
 applyLang(savedLang);
-const io = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('on'); }), { threshold:.08 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 function handleAppDownload(event) {
   const isIOS = /iPad|iPhone|iPod/i.test(navigator.userAgent) ||
     (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -414,6 +413,7 @@ document.querySelectorAll('[data-theme-filter]').forEach(button => {
   });
 });
 </script>
+<script src="assets/scroll-reveal.js" defer></script>
 <script type="module" src="assets/auth.js"></script>
 </body>
 </html>

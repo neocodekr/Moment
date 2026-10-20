@@ -107,6 +107,10 @@ footer {background:#101114;border-top:1px solid #303136}
 .loginProvider[data-login-provider="instagram"] img,.loginProvider[data-login-provider="tiktok"] img {filter:invert(1)}
 .loginProvider:disabled {background:#24252a;color:#aaaab0}
 .loginStatus {color:#dcb0b4!important}
+.reveal {opacity:1;transform:none;transition:none}
+.js-reveal .reveal {opacity:0;transform:translate3d(0,46px,0);transition:opacity .85s ease,transform .85s cubic-bezier(.2,.65,.2,1);transition-delay:var(--reveal-delay,0ms);will-change:opacity,transform}
+.js-reveal .reveal.on {opacity:1;transform:translate3d(0,0,0);will-change:auto}
+.js-reveal .featureCard.reveal.on:hover,.js-reveal .themeCard.reveal.on:hover {transform:translateY(-3px)}
 .ambientParticles {position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none}
 .ambientParticle {position:absolute;top:-5vh;left:var(--x);width:var(--size);height:var(--size);background:center/contain no-repeat;opacity:.68;animation:particle-fall var(--duration) linear var(--delay) infinite;will-change:transform}
 .ambientParticle.leaf {background-image:url("maple-leaf.svg")}
@@ -130,4 +134,4 @@ footer {background:#101114;border-top:1px solid #303136}
   .floatingLoginButton {left:18px;right:18px;width:calc(100% - 36px)}
   .ambientParticle {opacity:.47}
 }
-@media(prefers-reduced-motion:reduce) {.ambientParticle {animation:none;top:var(--y);transform:rotate(var(--turn));will-change:auto}.featureCard:hover,.themeCard:hover {transform:none}}
+@media(prefers-reduced-motion:reduce) {.ambientParticle {animation:none;top:var(--y);transform:rotate(var(--turn));will-change:auto}.reveal,.js-reveal .reveal {opacity:1;transform:none;transition:none;will-change:auto}.featureCard:hover,.themeCard:hover {transform:none}}
