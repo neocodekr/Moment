@@ -101,7 +101,7 @@ footer {background:#101114;border-top:1px solid #303136}
 .floatingLoginButton:hover {box-shadow:0 15px 40px rgba(0,0,0,.55);background:#d6d2d0}
 .loginDialog {background:#202125;color:#f2f1ef;border-color:#515258;box-shadow:0 30px 90px rgba(0,0,0,.7)}
 .loginDialog::backdrop {background:rgba(0,0,0,.8)}
-.loginMark {background:#edebe9;color:#17181b}
+.loginMark {background:#000;object-fit:cover}
 .loginProvider,.loginLogout {background:#2c2d32;color:#f1f1f2;border-color:#4e4f55}
 .loginProvider:hover {background:#393a40;border-color:#a77a7e}
 .loginProvider[data-login-provider="instagram"] img,.loginProvider[data-login-provider="tiktok"] img {filter:invert(1)}

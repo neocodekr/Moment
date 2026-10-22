@@ -11,8 +11,9 @@
 <meta property="og:description" content="Moment로 컷 만들기, 사진 편집, 테마 앨범, 스토리 영상을 한 번에 완성하세요." />
 <meta property="og:url" content="https://www.moment-cut.com/" />
 <link rel="canonical" href="https://www.moment-cut.com/" />
-<link rel="icon" type="image/png" href="https://neocode.cloud/moment_icon.png" />
-<link rel="apple-touch-icon" href="https://neocode.cloud/moment_icon.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/moment-app-icon.png" />
+<link rel="apple-touch-icon" href="/assets/moment-app-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" />
@@ -169,7 +170,7 @@ img,video,svg,canvas{max-width:100%;height:auto}
 <nav class="nav">
 <div class="wrap navin">
 <a class="brand" href="#top">
-<img alt="Moment icon" src="https://neocode.cloud/moment_icon.png"/>
+<img alt="Moment icon" src="/assets/moment-app-icon.png"/>
 <div class="brandWord"><b>Moment</b><span data-i18n="brandSub" data-brand-subtitle></span><span class="accountId" data-account-id hidden></span></div>
 </a>
 <div class="navLinks">
@@ -335,7 +336,7 @@ img,video,svg,canvas{max-width:100%;height:auto}
 <footer>
 <div class="wrap footerIn">
 <div class="footerBrand">
-<img alt="Moment icon" src="https://neocode.cloud/moment_icon.png">
+<img alt="Moment icon" src="/assets/moment-app-icon.png">
 <div><b>Moment</b><p data-i18n="footerText"></p></div>
 </img></div>
 <div class="neo">© 2026 <a href="https://neocode.cloud" rel="noopener noreferrer" target="_blank">Neocode</a>. All rights reserved.</div>
@@ -344,7 +345,7 @@ img,video,svg,canvas{max-width:100%;height:auto}
 <a class="floatingLoginButton" data-app-download data-i18n="mobileStart" href="https://play.google.com/store/apps/details?id=com.neocode.moment">시작하러 가기</a>
 <dialog class="loginDialog" id="loginDialog" aria-labelledby="loginDialogTitle" aria-describedby="loginDialogDesc">
   <button class="loginClose" type="button" data-close-login aria-label="닫기">&times;</button>
-  <div class="loginMark" aria-hidden="true">M</div>
+  <img class="loginMark" src="/assets/moment-app-icon.png" alt="" aria-hidden="true" />
   <h2 id="loginDialogTitle" data-i18n="loginTitle">Moment 로그인</h2>
   <p id="loginDialogDesc" data-i18n="loginDesc">원하는 계정으로 로그인하세요.</p>
   <div class="loginProviders">
