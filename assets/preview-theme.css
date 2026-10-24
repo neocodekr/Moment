@@ -144,3 +144,21 @@ footer {background:#101114;border-top:1px solid #303136}
   html,body,body *,body *::before,body *::after {font-family:"Noto Sans KR",sans-serif!important}
   .hero h1 {font-family:"Nanum Pen Script","Noto Sans KR",cursive!important}
 }
+@media(max-width:640px) {
+  .hero h1 {font-size:clamp(27px,8.2vw,36px);letter-spacing:0}
+  .sectionTitle h2,.copyPanel h3,.ctaBox h2 {
+    font-size:clamp(29px,7.8vw,34px);
+    line-height:1.35;
+    letter-spacing:-.035em;
+    word-break:keep-all;
+    overflow-wrap:normal;
+    text-wrap:wrap;
+  }
+  .hero p,.sectionTitle p,.copyPanel p,.ctaBox p {
+    line-height:1.7;
+    letter-spacing:0;
+    word-break:keep-all;
+    overflow-wrap:normal;
+  }
+  .sentence {max-width:100%}
+}
